@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Max Máquinas Balanças</title>
+<meta name="description" content="Assistência técnica autorizada em aferição e lacração de balanças em Uberaba e região. Automação comercial: balanças, impressoras térmicas de cupom, leitores de código de barras e sistemas de frente de caixa (PDV).">
+<meta name="theme-color" content="#1AB15B">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Max Máquinas — Aferição e lacração de balanças em Uberaba">
+<meta property="og:description" content="Balança aferida, lacrada e com laudo do INMETRO. Venda e manutenção de impressoras de cupom, leitores de código de barras e frente de caixa. Mais de 25 anos em Uberaba e região.">
+<meta property="og:image" content="img/logo-maxmaquinas.png">
+<meta property="og:locale" content="pt_BR">
+
+<link rel="icon" href="img/logo-maxmaquinas.png">
+<link rel="apple-touch-icon" href="img/logo-maxmaquinas.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap">
+
+<style>
+/* ============================================================
+   Max Máquinas — automação comercial e assistência em balanças
+   Paleta extraída da logo: verde #1AB15B + prata #A7A9AC.
+   Motivo estrutural: estadiômetro (régua de altura em cm).
+   ============================================================ */
+:root{
+  --paper:#F5F8F6;
+  --surface:#FFFFFF;
+  --surface-2:#EAF3ED;
+  --line:#DAE5DE;
+  --line-soft:#E9F0EB;
+
+  --ink:#15211C;
+  --ink-2:#3B4F46;
+  --muted:#697C73;
+
+  --brand:#1AB15B;          /* verde exato da logo */
+  --brand-deep:#0C8144;     /* texto, botões e ícones (contraste AA) */
+  --brand-on-dark:#4FD98A;
+  --brand-soft:#E4F7EC;
+  --brand-tint:#F1FBF5;
+  --btn-ink:#FFFFFF;
+
+  --band:#1B2A26;           /* grafite esverdeado: bloco de contraste */
+  --band-2:#132019;
+  --band-ink:#EFF6F1;
+  --band-muted:#9DB5A9;
+  --band-line:#31453D;
+
+  --silver:#A7A9AC;
+  --danger:#B23A2E;
+
+  --shadow-sm:0 1px 2px rgba(21,33,28,.05), 0 3px 10px rgba(21,33,28,.05);
+  --shadow-md:0 14px 40px rgba(21,33,28,.09), 0 3px 10px rgba(21,33,28,.05);
+
+  --r:12px;
+  --r-lg:18px;
+  --r-pill:999px;
+
+  --f-display:"Manrope","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+
+  --container:1160px;
+  --pad:clamp(16px,4vw,28px);
+  --gap-sec:clamp(48px,7vw,96px);
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1613;
+    --surface:#131F1A;
+    --surface-2:#19291F;
+    --line:#25382E;
+    --line-soft:#1E2F26;
+
+    --ink:#E8F2EC;
+    --ink-2:#BCCEC4;
+    --muted:#8BA096;
+
+    --brand:#3FD07F;
+    --brand-deep:#1AB15B;
+    --brand-on-dark:#4FD98A;
+    --brand-soft:#16311F;
+    --brand-tint:#122A1B;
+    --btn-ink:#06170F;
+
+    --band:#101B16;
+    --band-2:#0A1310;
+    --band-ink:#E8F2EC;
+    --band-muted:#93A99D;
+    --band-line:#25382E;
+
+    --silver:#6B7873;
+
+    --shadow-sm:0 1px 2px rgba(0,0,0,.45), 0 3px 10px rgba(0,0,0,.3);
+    --shadow-md:0 16px 44px rgba(0,0,0,.5), 0 3px 10px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1613;
+  --surface:#131F1A;
+  --surface-2:#19291F;
+  --line:#25382E;
+  --line-soft:#1E2F26;
+
+  --ink:#E8F2EC;
+  --ink-2:#BCCEC4;
+  --muted:#8BA096;
+
+  --brand:#3FD07F;
+  --brand-deep:#1AB15B;
+  --brand-on-dark:#4FD98A;
+  --brand-soft:#16311F;
+  --brand-tint:#122A1B;
+  --btn-ink:#06170F;
+
+  --band:#101B16;
+  --band-2:#0A1310;
+  --band-ink:#E8F2EC;
+  --band-muted:#93A99D;
+  --band-line:#25382E;
+
+  --silver:#6B7873;
+
+  --shadow-sm:0 1px 2px rgba(0,0,0,.45), 0 3px 10px rgba(0,0,0,.3);
+  --shadow-md:0 16px 44px rgba(0,0,0,.5), 0 3px 10px rgba(0,0,0,.35);
+}
+
+/* ---------- base ---------- */
+*,*::before,*::after{box-sizing:border-box;min-width:0}
+html{
+  scroll-behavior:smooth;scroll-padding-top:96px;
+  -webkit-text-size-adjust:100%;overflow-x:hidden;
+}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--f-body);
+  font-size:clamp(16px,.55vw + 14.4px,17.5px);line-height:1.62;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.022em;line-height:1.12}
+p{margin:0;overflow-wrap:break-word}
+ul,ol{margin:0;padding:0;list-style:none}
+button,input,textarea{font:inherit;color:inherit;max-width:100%}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:5px}
+
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:var(--pad)}
+.skip{position:absolute;left:-9999px;top:0;background:var(--surface);padding:12px 18px;z-index:200}
+.skip:focus{left:0;top:0}
+section{padding-block:var(--gap-sec)}
+
+/* ---------- estadiômetro: motivo estrutural ---------- */
+.headwrap{display:flex;gap:clamp(16px,2.5vw,28px);align-items:stretch}
+.cmrule{
+  flex:none;width:38px;
+  background:
+    repeating-linear-gradient(180deg, var(--line) 0 1px, transparent 1px 9px) right top / 10px 100% no-repeat,
+    repeating-linear-gradient(180deg, var(--brand) 0 1.5px, transparent 1.5px 45px) right top / 20px 100% no-repeat,
+    linear-gradient(var(--line), var(--line)) right top / 1px 100% no-repeat;
+}
+.cmrule--band{
+  background:
+    repeating-linear-gradient(180deg, var(--band-line) 0 1px, transparent 1px 9px) right top / 10px 100% no-repeat,
+    repeating-linear-gradient(180deg, var(--brand-on-dark) 0 1.5px, transparent 1.5px 45px) right top / 20px 100% no-repeat,
+    linear-gradient(var(--band-line), var(--band-line)) right top / 1px 100% no-repeat;
+}
+@media (max-width:760px){.cmrule{display:none}}
+
+/* ---------- tipografia utilitária ---------- */
+.eyebrow{
+  font-family:var(--f-mono);font-size:clamp(11px,.9vw,12px);font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--brand-deep);
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:16px;height:2px;background:var(--brand);flex:none}
+.eyebrow--band{color:var(--brand-on-dark)}
+.eyebrow--band::before{background:var(--brand-on-dark)}
+.eyebrow--center{justify-content:center}
+
+.sec-head{display:flex;flex-direction:column;gap:14px;max-width:64ch}
+.sec-head h2{font-size:clamp(26px,3.4vw + 8px,42px);font-weight:800}
+.sec-head p{color:var(--muted);font-size:clamp(16px,.8vw + 13px,19px);max-width:58ch}
+.sec-head--band p{color:var(--band-muted)}
+.sec-head--center{align-items:center;text-align:center;margin-inline:auto}
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 22px;border-radius:var(--r-pill);
+  font-family:var(--f-display);font-weight:700;
+  font-size:clamp(15px,.4vw + 13.6px,16.5px);letter-spacing:-.01em;
+  text-decoration:none;border:1.5px solid transparent;cursor:pointer;text-align:center;
+  transition:background-color .18s ease, border-color .18s ease, color .18s ease, transform .18s ease;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn-wa{background:var(--brand-deep);color:var(--btn-ink);border-color:var(--brand-deep);box-shadow:0 6px 18px rgba(26,177,91,.24)}
+.btn-wa:hover{background:var(--brand);border-color:var(--brand)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand-deep)}
+.btn-lg{padding:16px 28px}
+.btn .ico{width:20px;height:20px;flex:none;fill:currentColor}
+
+/* ---------- header ---------- */
+.header{
+  position:sticky;top:0;z-index:60;
+  background:var(--paper);
+  background:color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter:saturate(150%) blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.header.is-stuck{border-bottom-color:var(--line);box-shadow:var(--shadow-sm)}
+.header .container{display:flex;align-items:center;gap:clamp(12px,2vw,22px);min-height:clamp(72px,8vw,92px)}
+
+.brand{display:flex;align-items:center;text-decoration:none;flex:none}
+.brand img{height:clamp(42px,5.2vw,58px);width:auto}
+
+/* A nav ocupa o vão entre a logo e o botão do WhatsApp, mas os links têm
+   a largura do próprio texto e um respiro fixo entre si — antes eles se
+   esticavam em fatias iguais, o que afastava demais um rótulo do outro.
+   O grupo fica centrado nesse vão, então as pontas seguem simétricas. */
+.nav{flex:1 1 auto;min-width:0}
+.nav-inner{
+  display:flex;align-items:center;width:100%;justify-content:center;
+  gap:clamp(12px,1.7vw,26px);padding-inline:0;
+}
+.nav a{
+  flex:0 1 auto;text-align:center;position:relative;
+  text-decoration:none;color:var(--ink-2);font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  font-size:clamp(13px,.55vw + 9.4px,15.5px);
+  padding-block:9px;transition:color .16s ease;
+}
+.nav a::after{
+  content:"";position:absolute;left:50%;bottom:0;height:2px;width:calc(100% - 8px);
+  background:var(--brand);transform:translateX(-50%) scaleX(0);transform-origin:center;
+  transition:transform .22s cubic-bezier(.32,.9,.28,1);
+}
+.nav a:hover{color:var(--ink)}
+.nav a:hover::after{transform:translateX(-50%) scaleX(1)}
+.header .btn{padding:11px 18px;font-size:15px;white-space:nowrap;flex:none}
+
+/* botão hambúrguer com morph para X */
+.navtoggle{
+  display:none;background:none;border:1.5px solid var(--line);border-radius:10px;
+  width:44px;height:44px;padding:0;cursor:pointer;flex:none;position:relative;
+  transition:border-color .2s ease;
+}
+.navtoggle:hover{border-color:var(--brand)}
+.navtoggle i{
+  position:absolute;left:11px;width:20px;height:2px;border-radius:2px;background:var(--ink);
+  transition:transform .34s cubic-bezier(.4,.1,.2,1.2), opacity .18s ease, top .28s ease;
+}
+.navtoggle i:nth-child(1){top:14px}
+.navtoggle i:nth-child(2){top:21px}
+.navtoggle i:nth-child(3){top:28px}
+.navtoggle[aria-expanded="true"] i:nth-child(1){top:21px;transform:rotate(45deg)}
+.navtoggle[aria-expanded="true"] i:nth-child(2){opacity:0;transform:scaleX(.3)}
+.navtoggle[aria-expanded="true"] i:nth-child(3){top:21px;transform:rotate(-45deg)}
+
+@media (max-width:1040px){
+  .navtoggle{display:block;order:3}
+  .header .btn-wa{order:2}
+  .brand{margin-right:auto}
+  .nav a::after{display:none}
+  .nav{
+    position:absolute;top:100%;left:0;right:0;
+    background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow-md);
+    display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;
+    transition:grid-template-rows .36s cubic-bezier(.32,.9,.28,1), opacity .22s ease, visibility 0s linear .36s;
+  }
+  .nav.is-open{
+    grid-template-rows:1fr;opacity:1;visibility:visible;
+    transition:grid-template-rows .36s cubic-bezier(.32,.9,.28,1), opacity .22s ease, visibility 0s;
+  }
+  .nav-inner{
+    overflow:hidden;min-height:0;flex-direction:column;align-items:stretch;gap:0;
+    padding-inline:var(--pad);
+  }
+  .nav a{
+    flex:none;text-align:left;
+    padding:15px 2px;border-bottom:1px solid var(--line-soft);font-size:16.5px;
+    opacity:0;transform:translateY(-10px);
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .nav a:last-child{border-bottom:0;margin-bottom:14px}
+  .nav a:hover{border-bottom-color:var(--line-soft)}
+  .nav.is-open a{opacity:1;transform:none}
+  .nav.is-open a:nth-child(1){transition-delay:.10s}
+  .nav.is-open a:nth-child(2){transition-delay:.15s}
+  .nav.is-open a:nth-child(3){transition-delay:.20s}
+  .nav.is-open a:nth-child(4){transition-delay:.25s}
+  .nav.is-open a:nth-child(5){transition-delay:.30s}
+}
+@media (max-width:560px){
+  .header .btn-wa .lbl{display:none}
+  .header .btn-wa{padding:11px 13px}
+}
+
+/* ---------- 1. HERÓI ----------
+   Bloco de mundo próprio: imagem de fundo escura em qualquer tema, com
+   véu sobreposto que garante o contraste do texto em todo o quadro.
+   A camada "img/hero-foto.jpg" é a foto: basta salvar o arquivo em img/ que
+   ela assume. Sem o arquivo, o fundo abstrato "img/hero-fundo.jpg" aparece
+   no lugar — se decidir não usar foto, remova a linha do hero-foto. */
+.hero{
+  position:relative;overflow:hidden;border-bottom:1px solid #23372E;
+  background-color:#070E0B;
+  background-image:
+    linear-gradient(180deg, rgba(6,14,11,.42) 0%, rgba(6,14,11,.55) 52%, rgba(6,14,11,.72) 100%),
+    url("img/hero-foto.jpg"),
+    url("img/hero-fundo.jpg");
+  background-size:cover, cover, cover;
+  background-position:center, center 32%, center;
+  background-repeat:no-repeat, no-repeat, no-repeat;
+  color:#F2F8F4;
+  padding-block:clamp(56px,8vw,104px) clamp(54px,8vw,98px);
+}
+.hero-inner{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  gap:clamp(18px,2.4vw,26px);max-width:56rem;margin-inline:auto;
+}
+.hero h1{font-size:clamp(31px,4.4vw + 10px,58px);font-weight:800;line-height:1.05;letter-spacing:-.03em;max-width:19ch;color:#FFFFFF}
+.hero h1 em{font-style:normal;color:#5FD98F}
+.hero-lead{color:rgba(242,248,244,.84);font-size:clamp(16.5px,.9vw + 13.5px,20px);max-width:56ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;width:100%}
+.hero-actions .btn{flex:0 1 auto;min-width:min(100%,238px)}
+.hero .btn-wa{background:#1AB15B;border-color:#1AB15B;color:#06170F;box-shadow:0 8px 24px rgba(6,14,11,.45)}
+.hero .btn-wa:hover{background:#3FD07F;border-color:#3FD07F}
+.hero .btn-ghost{color:#F2F8F4;border-color:rgba(242,248,244,.34);background:rgba(242,248,244,.05)}
+.hero .btn-ghost:hover{border-color:#5FD98F;color:#5FD98F}
+
+.badge-auth{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(26,177,91,.14);border:1px solid rgba(95,217,143,.55);border-radius:var(--r-pill);
+  padding:7px 16px 7px 12px;color:#7FE3A8;
+  font-family:var(--f-mono);font-size:clamp(10.5px,.8vw,12px);letter-spacing:.13em;text-transform:uppercase;
+}
+.badge-auth svg{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+.hero-facts{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(20px,4vw,44px);
+  border-top:1px solid rgba(242,248,244,.18);padding-top:clamp(18px,2.4vw,24px);margin-top:6px;width:100%;
+}
+.hero-facts b{display:block;font-family:var(--f-display);font-size:clamp(20px,1.6vw + 14px,28px);font-weight:800;letter-spacing:-.025em;color:#FFFFFF}
+.hero-facts span{font-family:var(--f-mono);font-size:clamp(10px,.7vw,11.5px);letter-spacing:.12em;text-transform:uppercase;color:rgba(242,248,244,.62)}
+
+/* ---------- faixa de credibilidade ---------- */
+.strip{background:var(--surface);border-bottom:1px solid var(--line)}
+.strip-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line-soft)}
+.strip-grid > div{background:var(--surface);padding:clamp(20px,2.4vw,26px) clamp(16px,2vw,24px);display:flex;flex-direction:column;gap:6px}
+.strip-grid svg{width:24px;height:24px;stroke:var(--brand-deep);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;margin-bottom:5px}
+.strip-grid h3{font-size:clamp(15.5px,.5vw + 14px,17px);font-weight:700}
+.strip-grid p{font-size:14.5px;color:var(--muted);line-height:1.5}
+@media (max-width:900px){.strip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.strip-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- 2. BENEFÍCIOS ---------- */
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,1.8vw,20px);margin-top:clamp(32px,4vw,44px)}
+@media (max-width:640px){.cards{grid-template-columns:minmax(0,1fr)}}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:clamp(20px,2.4vw,26px);display:flex;flex-direction:column;gap:10px;
+  transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.card:hover{border-color:var(--brand);box-shadow:var(--shadow-sm);transform:translateY(-3px)}
+.card-ico{width:44px;height:44px;border-radius:12px;background:var(--brand-soft);display:grid;place-content:center;margin-bottom:4px;flex:none}
+.card-ico svg{width:22px;height:22px;stroke:var(--brand-deep);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:clamp(17px,.5vw + 15.5px,19px);font-weight:700}
+.card p{color:var(--muted);font-size:15.5px;line-height:1.55}
+
+/* ---------- 3. COMO FUNCIONA ---------- */
+.how{background:var(--band);color:var(--band-ink)}
+.steps{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(14px,1.8vw,20px);margin-top:clamp(32px,4vw,48px);
+}
+@media (max-width:980px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.steps{grid-template-columns:minmax(0,1fr)}}
+.step{
+  background:var(--band-2);border:1px solid var(--band-line);border-radius:var(--r-lg);
+  padding:clamp(24px,2.6vw,30px) clamp(18px,2vw,24px);
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;
+}
+.step-n{
+  width:40px;height:40px;border-radius:50%;display:grid;place-content:center;flex:none;
+  border:1.5px solid var(--brand-on-dark);color:var(--brand-on-dark);
+  font-family:var(--f-mono);font-size:14px;font-weight:600;margin-bottom:6px;
+}
+.step h3{font-size:clamp(17px,.5vw + 15.5px,19px);font-weight:700}
+.step p{color:var(--band-muted);font-size:15.5px;line-height:1.55}
+
+/* ---------- 4. GARANTIA ---------- */
+.warranty{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(26px,4vw,56px);align-items:start}
+@media (max-width:920px){.warranty{grid-template-columns:minmax(0,1fr)}}
+.checks li{display:flex;gap:13px;padding:15px 0;border-bottom:1px solid var(--line-soft);align-items:flex-start}
+.checks li:last-child{border-bottom:0}
+.checks svg{width:21px;height:21px;flex:none;margin-top:3px;stroke:var(--brand-deep);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.checks b{font-family:var(--f-display);font-weight:700;font-size:16.5px;display:block;margin-bottom:2px}
+.checks span{color:var(--muted);font-size:15px;line-height:1.5}
+.warranty-note{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:clamp(22px,2.6vw,28px);display:flex;flex-direction:column;gap:14px;align-items:flex-start;
+  box-shadow:var(--shadow-sm);
+}
+.warranty-note h3{font-size:clamp(19px,.7vw + 17px,22px);font-weight:800}
+.warranty-note p{color:var(--ink-2);font-size:16px}
+.warranty-note .fineprint{font-size:14px;color:var(--muted)}
+.warranty-note .btn{align-self:stretch}
+
+/* ---------- 5. DÚVIDAS FREQUENTES (acordeão) ---------- */
+.faq{background:var(--surface);border-block:1px solid var(--line)}
+.faq-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(12px,1.6vw,18px);margin-top:clamp(30px,4vw,44px);align-items:start;
+}
+@media (max-width:860px){.faq-grid{grid-template-columns:minmax(0,1fr)}}
+.faq-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);
+  overflow:hidden;cursor:pointer;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.faq-card:hover{border-color:var(--brand)}
+.faq-card.is-open{border-color:var(--brand);box-shadow:var(--shadow-sm)}
+/* A altura mínima reserva duas linhas de pergunta mais o respiro: todos os
+   cards fechados ficam iguais, e o texto e o sinal se centram verticalmente
+   nesse espaço, tenham a pergunta uma linha ou duas. */
+.faq-q{
+  --faq-pad-y:clamp(14px,1.8vw,18px);
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:14px;
+  padding:var(--faq-pad-y) clamp(16px,2vw,22px);
+  min-height:calc(2.7em + 2 * var(--faq-pad-y));
+  font-family:var(--f-display);font-weight:700;font-size:clamp(15.5px,.5vw + 14px,17px);
+  color:var(--ink);line-height:1.35;
+}
+.faq-card:hover .faq-q{color:var(--brand-deep)}
+.faq-q > span:first-child{flex:1 1 auto}
+.faq-ico{
+  flex:0 0 32px;width:32px;height:32px;aspect-ratio:1;border-radius:50%;
+  align-self:center;box-sizing:border-box;
+  border:1.5px solid var(--line);background:var(--surface);
+  display:grid;place-content:center;
+  transition:transform .32s cubic-bezier(.32,.9,.28,1), border-color .2s ease, background-color .2s ease;
+}
+.faq-ico svg{width:15px;height:15px;display:block;stroke:var(--brand-deep);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.faq-card:hover .faq-ico{border-color:var(--brand)}
+.faq-card.is-open .faq-ico{transform:rotate(45deg);border-color:var(--brand);background:var(--brand-soft)}
+.faq-a{
+  display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .34s cubic-bezier(.32,.9,.28,1);
+}
+.faq-card.is-open .faq-a{grid-template-rows:1fr}
+.faq-a > div{overflow:hidden;min-height:0}
+.faq-a p{
+  padding:0 clamp(16px,2vw,22px) clamp(18px,2vw,22px) clamp(16px,2vw,22px);
+  color:var(--muted);font-size:15.5px;line-height:1.6;
+}
+.faq-a p + p{padding-top:0;margin-top:-8px}
+.faq-a a{color:var(--brand-deep);font-weight:600;text-underline-offset:3px}
+
+/* ---------- 6. CONTATO / WHATSAPP ---------- */
+.wa{background:var(--surface-2)}
+.wa-box{
+  margin-top:clamp(30px,4vw,44px);background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);
+}
+.tabs{display:flex;border-bottom:1px solid var(--line)}
+.tab{
+  flex:1 1 0;min-width:0;padding:16px 10px;background:none;border:0;border-bottom:3px solid transparent;
+  font-family:var(--f-display);font-weight:700;font-size:clamp(13px,.6vw + 11.5px,15.5px);
+  color:var(--muted);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  transition:color .16s ease,border-color .16s ease,background-color .16s ease;
+}
+.tab svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tab:hover{color:var(--ink);background:var(--brand-tint)}
+.tab[aria-selected="true"]{color:var(--brand-deep);border-bottom-color:var(--brand)}
+@media (max-width:700px){.tab{flex-direction:column;gap:6px;padding:13px 6px;line-height:1.25}}
+
+.panel{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+.panel[hidden]{display:none}
+@media (max-width:940px){.panel{grid-template-columns:minmax(0,1fr)}}
+.panel-fields{padding:clamp(20px,2.6vw,28px);display:flex;flex-direction:column;gap:22px}
+.panel-out{
+  padding:clamp(20px,2.6vw,28px);background:var(--brand-tint);border-left:1px solid var(--line);
+  display:flex;flex-direction:column;gap:14px;
+}
+@media (max-width:940px){.panel-out{border-left:0;border-top:1px solid var(--line)}}
+
+.fieldset{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:11px}
+.fieldset legend{padding:0;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;max-width:100%}
+.chip input{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.chip span{
+  display:block;padding:9px 15px;border:1.5px solid var(--line);border-radius:var(--r-pill);
+  font-size:14.5px;font-weight:500;color:var(--ink-2);background:var(--surface);
+  transition:border-color .16s ease,color .16s ease,background-color .16s ease;
+}
+.chip input:hover + span{border-color:var(--brand)}
+.chip input:focus-visible + span{outline:3px solid var(--brand);outline-offset:2px}
+.chip input:checked + span{border-color:var(--brand);color:var(--brand-deep);background:var(--brand-soft);font-weight:600}
+
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:560px){.row{grid-template-columns:minmax(0,1fr)}}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field label{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.field input,.field textarea{
+  background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);
+  padding:12px 14px;font-size:16px;font-family:var(--f-body);color:var(--ink);width:100%;
+  transition:border-color .16s ease, box-shadow .16s ease;
+}
+.field input:hover,.field textarea:hover{border-color:var(--muted)}
+.field input:focus,.field textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 3px var(--brand-soft)}
+.field textarea{resize:vertical;min-height:104px;line-height:1.55}
+.field .err{font-size:14px;color:var(--danger);display:none}
+.field.is-invalid input,.field.is-invalid textarea{border-color:var(--danger)}
+.field.is-invalid .err{display:block}
+
+.preview-label{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.preview{
+  flex:1 1 auto;min-height:200px;border:1.5px dashed var(--line);border-radius:var(--r);
+  background:var(--surface);padding:15px;font-size:15.5px;line-height:1.6;color:var(--ink-2);
+  font-family:var(--f-body);resize:vertical;width:100%;
+}
+.preview:focus{outline:none;border-style:solid;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.panel-out .btn{width:100%}
+.hint{font-size:13.5px;color:var(--muted);line-height:1.5}
+.hint a{color:var(--brand-deep);font-weight:600;overflow-wrap:anywhere}
+.form-status{
+  display:none;gap:12px;align-items:flex-start;
+  background:var(--brand-soft);border:1px solid var(--brand);
+  border-radius:var(--r);padding:14px 16px;font-size:15px;color:var(--ink-2);
+}
+.form-status.is-on{display:flex}
+.form-status svg{width:20px;height:20px;flex:none;margin-top:2px;stroke:var(--brand-deep);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- rodapé ---------- */
+.footer{background:var(--band-2);color:var(--band-muted);padding-block:clamp(36px,4.5vw,52px) 30px;font-size:14.5px}
+.footer-grid{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,.8fr);
+  gap:clamp(26px,4vw,48px);padding-bottom:clamp(26px,3vw,34px);border-bottom:1px solid var(--band-line);
+}
+@media (max-width:860px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.footer-grid{grid-template-columns:minmax(0,1fr);gap:28px}}
+.footer-brand{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.footer-brand img{height:clamp(52px,6.4vw,68px);width:auto}
+.footer-brand p{color:var(--band-muted);font-size:14.5px;max-width:38ch}
+.footer h4{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--brand-on-dark);font-weight:500;margin-bottom:14px;
+}
+.footer-list{display:flex;flex-direction:column;gap:12px}
+.footer-list a,.footer-list div{display:flex;gap:11px;align-items:flex-start;text-decoration:none;color:var(--band-ink);transition:color .16s ease}
+.footer-list a:hover{color:var(--brand-on-dark)}
+.footer-list svg{width:18px;height:18px;flex:none;margin-top:3px;stroke:var(--brand-on-dark);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.footer-list b{display:block;font-family:var(--f-display);font-weight:700;font-size:15px;overflow-wrap:anywhere}
+.footer-list small{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--band-muted)}
+.footer-links{display:flex;flex-direction:column;gap:11px}
+.footer-links a{text-decoration:none;color:var(--band-muted);transition:color .16s ease}
+.footer-links a:hover{color:var(--brand-on-dark)}
+/* Dois blocos distribuídos com folgas iguais: mesma distância entre eles
+   e de cada um até a borda. */
+.footer-bottom{padding-top:22px;display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:space-evenly;align-items:center;font-family:var(--f-mono);font-size:12px;letter-spacing:.03em;line-height:1.7}
+.footer-bottom span{overflow-wrap:anywhere}
+.footer-bottom a{
+  color:var(--band-ink);text-decoration:underline;
+  text-decoration-color:var(--band-line);text-underline-offset:3px;
+  transition:color .16s ease, text-decoration-color .16s ease;
+}
+.footer-bottom a:hover{color:var(--brand-on-dark);text-decoration-color:var(--brand-on-dark)}
+
+/* Crédito da RS: o símbolo "rs" da marca seguido do nome em texto.
+   Se o arquivo faltar, o alt "RS" ocupa o lugar e a linha continua lendo
+   "Desenvolvido por RS Soluções Digitais". */
+.rs-credito{display:inline-flex;align-items:center;gap:7px;vertical-align:middle}
+.footer-bottom .rs{
+  display:inline-flex;align-items:center;gap:6px;vertical-align:middle;
+  text-decoration:none;color:var(--band-ink);
+}
+/* Sem plaquinha: o azul da marca é clareado no próprio arquivo para o
+   mesmo matiz índigo continuar visível sobre o rodapé escuro. */
+.rs-logo{height:clamp(13px,1.3vw,15px);width:auto;display:block}
+.rs-nome{font-family:var(--f-display);font-weight:600;font-size:11.5px;letter-spacing:0;white-space:nowrap}
+.footer-bottom .rs:hover{color:var(--brand-on-dark)}
+
+/* ---------- botão flutuante ----------
+   Só entra quando o herói sai de vista: no topo o cabeçalho já oferece
+   o mesmo atalho, e dois botões iguais na tela competiriam entre si. */
+.fab{
+  position:fixed;right:clamp(14px,3vw,24px);bottom:clamp(14px,3vw,24px);z-index:70;
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--brand-deep);color:var(--btn-ink);text-decoration:none;
+  padding:14px 20px;border-radius:var(--r-pill);
+  font-family:var(--f-display);font-weight:700;font-size:15.5px;
+  box-shadow:0 10px 28px rgba(6,14,11,.30), 0 4px 12px rgba(26,177,91,.28);
+  opacity:0;visibility:hidden;transform:translateY(14px) scale(.94);
+  transition:opacity .28s ease, transform .32s cubic-bezier(.32,.9,.28,1),
+             visibility 0s linear .32s, background-color .18s ease;
+}
+.fab.is-on{
+  opacity:1;visibility:visible;transform:none;
+  transition:opacity .28s ease, transform .32s cubic-bezier(.32,.9,.28,1),
+             visibility 0s, background-color .18s ease;
+}
+.fab:hover{background:var(--brand)}
+.fab.is-on:hover{transform:translateY(-2px)}
+.fab svg{width:23px;height:23px;fill:currentColor;flex:none}
+@media (max-width:620px){.fab{padding:14px}.fab .lbl{display:none}}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease, transform .55s ease}
+.reveal.is-in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Ir para o conteúdo</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header" id="topo">
+  <div class="container">
+    <a class="brand" href="#topo" aria-label="Max Máquinas Automação Comercial — início">
+      <img src="img/logo-maxmaquinas.png" width="491" height="304" alt="Max Máquinas Automação Comercial">
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Navegação principal">
+      <div class="nav-inner">
+        <a href="#beneficios">Benefícios</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#garantia">Garantia</a>
+        <a href="#duvidas">Dúvidas</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
+
+    <a class="btn btn-wa" href="#contato" data-wa-jump="orcamento">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm5.83 14.06c-.25.7-1.44 1.34-2 1.42-.51.08-1.16.11-1.87-.12-.43-.13-.98-.32-1.69-.62-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07 0-1.46.76-2.18 1.04-2.48.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.18.3.78 1.29 1.68 2.09 1.15 1.03 2.12 1.35 2.42 1.5.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.73.82 2.03.97.3.15.5.22.57.35.08.13.08.73-.17 1.43Z"></path></svg>
+      <span class="lbl">Falar no WhatsApp</span>
+    </a>
+
+    <button class="navtoggle" id="navtoggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu">
+      <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
+    </button>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<!-- ===================== 1. PRINCIPAL ===================== -->
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero-inner">
+      <p class="badge-auth">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.4 3.4 8.2 8 9 4.6-.8 8-4.6 8-9V6l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        Assistência autorizada
+      </p>
+      <h1>Aferição e <em>lacração</em> de balanças e automação comercial</h1>
+      <p class="hero-lead">
+        Deixamos sua balança aferida, lacrada e com o laudo de conformidade do INMETRO
+        exigido na fiscalização  e cuidamos de toda a frente de caixa junto, das
+        impressoras térmicas de cupom aos leitores de código de barras e sistemas de PDV,
+        <br>em Uberaba e região.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-wa btn-lg" href="#contato" data-wa-jump="agendamento">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm5.83 14.06c-.25.7-1.44 1.34-2 1.42-.51.08-1.16.11-1.87-.12-.43-.13-.98-.32-1.69-.62-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07 0-1.46.76-2.18 1.04-2.48.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.18.3.78 1.29 1.68 2.09 1.15 1.03 2.12 1.35 2.42 1.5.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.73.82 2.03.97.3.15.5.22.57.35.08.13.08.73-.17 1.43Z"></path></svg>
+          Agendar aferição
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#como-funciona">Como funciona</a>
+      </div>
+      <ul class="hero-facts">
+        <li><b>+25 anos</b><span>de atuação</span></li>
+        <li><b>Uberaba</b><span>e região</span></li>
+        <li><b>INMETRO</b><span>laudo de conformidade</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- faixa de credibilidade -->
+<div class="strip">
+  <div class="container">
+    <div class="strip-grid">
+      <div>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.4 3.4 8.2 8 9 4.6-.8 8-4.6 8-9V6l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        <h3>Autorizada para aferir e lacrar</h3>
+        <p>Aferição com pesos-padrão, lacração do equipamento e emissão do laudo de conformidade.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18m-9 4 2 2 3-3"></path></svg>
+        <h3>Atendimento sem parar o caixa</h3>
+        <p>Visita agendada no horário que funciona para a sua operação, sem fechar a loja.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"></path></svg>
+        <h3>Mais de 25 anos em Uberaba</h3>
+        <p>Supermercados, padarias, açougues, farmácias, consultórios e comércio em geral.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M7 21h10M12 17v4M7 8h6M7 12h4"></path></svg>
+        <h3>Automação comercial completa</h3>
+        <p>Balanças, impressoras de cupom, leitores de código de barras, gavetas, busca-preço e PDV.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 2. BENEFÍCIOS ===================== -->
+<section id="beneficios">
+  <div class="container">
+    <div class="headwrap reveal">
+      <div class="cmrule" aria-hidden="true"></div>
+      <div class="sec-head">
+        <p class="eyebrow">Benefícios</p>
+        <h2>Regularidade em dia e equipamento confiável no caixa</h2>
+        <p>A balança é ao mesmo tempo item de fiscalização e ferramenta de venda. Cuidamos dos dois lados — e do resto da frente de caixa junto.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <article class="card reveal">
+        <div class="card-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M9 15l2 2 4-4"></path></svg></div>
+        <h3>Laudo aceito na fiscalização</h3>
+        <p>Emitimos o laudo de conformidade do INMETRO exigido pela Vigilância Sanitária, com o equipamento devidamente lacrado.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"></path><circle cx="12" cy="12" r="3.4"></circle></svg></div>
+        <h3>Peso exato e margem preservada</h3>
+        <p>Uma balança descalibrada entrega produto a mais em cada venda. A aferição devolve a precisão — e o lucro que estava escorrendo pelo caixa.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4.5 4.5 0 0 0 6 6L17 16l-3.4-3.4M9.3 17.7a4.5 4.5 0 0 1-6-6L7 8l3.4 3.4"></path><path d="m11 13-6 6"></path></svg></div>
+        <h3>Manutenção e conserto</h3>
+        <p>Muito além da aferição: célula de carga, display, teclado e placa da balança, além do reparo de impressoras de cupom e leitores.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M7 21h10M12 17v4M7 8h6M7 12h4"></path></svg></div>
+        <h3>Um fornecedor para toda a frente de caixa</h3>
+        <p>Balança, impressora térmica de cupom, leitor de código de barras, gaveta de dinheiro, busca-preço e PDV com o mesmo técnico.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3. COMO FUNCIONA ===================== -->
+<section class="how" id="como-funciona">
+  <div class="container">
+    <div class="headwrap reveal">
+      <div class="cmrule cmrule--band" aria-hidden="true"></div>
+      <div class="sec-head sec-head--band">
+        <p class="eyebrow eyebrow--band">Como funciona</p>
+        <h2>Do primeiro contato ao lacre, em quatro etapas</h2>
+        <p>A ordem importa: cada etapa depende da anterior, e o laudo só é emitido depois que o equipamento passa na aferição.</p>
+      </div>
+    </div>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step-n" aria-hidden="true">01</span>
+        <h3>Contato e diagnóstico</h3>
+        <p>Você informa o tipo e o modelo do equipamento pelo WhatsApp. Retornamos com o orçamento e o prazo do serviço.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-n" aria-hidden="true">02</span>
+        <h3>Visita agendada</h3>
+        <p>O técnico vai até o seu estabelecimento no dia e período combinados — ou você traz o equipamento até a nossa loja.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-n" aria-hidden="true">03</span>
+        <h3>Manutenção e aferição</h3>
+        <p>Reparo do que estiver com defeito e aferição com pesos-padrão em toda a faixa de pesagem do equipamento.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-n" aria-hidden="true">04</span>
+        <h3>Lacração e laudo</h3>
+        <p>Com o equipamento aprovado, ele é lacrado e você recebe o laudo de conformidade para apresentar à fiscalização.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================== 4. GARANTIA ===================== -->
+<section id="garantia">
+  <div class="container">
+    <div class="headwrap reveal" style="margin-bottom:clamp(28px,3.5vw,40px)">
+      <div class="cmrule" aria-hidden="true"></div>
+      <div class="sec-head">
+        <p class="eyebrow">Garantia</p>
+        <h2>Serviço garantido e documentado</h2>
+        <p>Você recebe por escrito tudo o que foi feito no equipamento. Se algo relacionado ao serviço apresentar problema dentro do prazo, voltamos sem custo de mão de obra.</p>
+      </div>
+    </div>
+
+    <div class="warranty">
+      <ul class="checks reveal">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4L19 7"></path></svg>
+          <div><b>Garantia sobre serviço e peças</b><span>Mão de obra e componentes substituídos cobertos pelo prazo informado na ordem de serviço.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4L19 7"></path></svg>
+          <div><b>Documentação pronta para a fiscalização</b><span>Ordem de serviço detalhada e laudo de conformidade, arquivados junto à documentação do estabelecimento.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4L19 7"></path></svg>
+          <div><b>Orçamento aprovado antes do reparo</b><span>Nenhuma peça é trocada sem o seu aval. Sem surpresa no valor final.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4L19 7"></path></svg>
+          <div><b>Retorno prioritário na garantia</b><span>Chamado dentro do prazo entra na frente da fila de agendamento.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4L19 7"></path></svg>
+          <div><b>Histórico do seu equipamento</b><span>Guardamos o registro dos atendimentos anteriores e avisamos quando a próxima aferição se aproxima.</span></div>
+        </li>
+      </ul>
+
+      <aside class="warranty-note reveal">
+        <p class="eyebrow">Mais de 25 anos</p>
+        <h3>Quem assina o laudo responde por ele</h3>
+        <p>
+          A Max Máquinas Automação Comercial atua há mais de 25 anos em Uberaba e região.
+          Atendemos supermercados, padarias, açougues, farmácias, consultórios e todo tipo
+          de comércio que depende de equipamento confiável na frente de caixa e de suporte
+          técnico que aparece quando é chamado.
+        </p>
+        <p class="fineprint">
+          Prazos de garantia e valores variam conforme o equipamento e o serviço executado.
+          Consulte as condições no seu orçamento.
+        </p>
+        <a class="btn btn-wa" href="#contato" data-wa-jump="orcamento">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm5.83 14.06c-.25.7-1.44 1.34-2 1.42-.51.08-1.16.11-1.87-.12-.43-.13-.98-.32-1.69-.62-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07 0-1.46.76-2.18 1.04-2.48.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.18.3.78 1.29 1.68 2.09 1.15 1.03 2.12 1.35 2.42 1.5.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.73.82 2.03.97.3.15.5.22.57.35.08.13.08.73-.17 1.43Z"></path></svg>
+          Pedir orçamento
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 5. DÚVIDAS FREQUENTES ===================== -->
+<section class="faq" id="duvidas">
+  <div class="container">
+    <div class="headwrap reveal">
+      <div class="cmrule" aria-hidden="true"></div>
+      <div class="sec-head">
+        <p class="eyebrow">Dúvidas frequentes</p>
+        <h2>As perguntas que mais chegam até nós</h2>
+        <p>Clique na pergunta para ver a resposta. Se a sua não estiver aqui, é só mandar no WhatsApp.</p>
+      </div>
+    </div>
+
+    <div class="faq-grid">
+      <article class="faq-card reveal">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-1">
+          <span>A fiscalização pediu o laudo da balança.<br>O que eu faço?</span>
+          <span class="faq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button></h3>
+        <div class="faq-a" id="faq-1"><div>
+          <p>Fale com a gente informando o tipo e o modelo da balança. Agendamos a visita, aferimos o equipamento com pesos-padrão, lacramos e emitimos o laudo de conformidade para você apresentar na inspeção.</p>
+          <p><a href="#contato" data-wa-jump="agendamento">Agendar pelo WhatsApp →</a></p>
+        </div></div>
+      </article>
+
+      <article class="faq-card reveal">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-2">
+          <span>Como funciona a aferição?</span>
+          <span class="faq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button></h3>
+        <div class="faq-a" id="faq-2"><div>
+          <p>O técnico compara a resposta da sua balança com pesos-padrão em vários pontos da faixa de pesagem. Havendo desvio, o equipamento é ajustado. Aprovado, ele é lacrado e recebe o laudo de conformidade.</p>
+        </div></div>
+      </article>
+
+      <article class="faq-card reveal">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-3">
+          <span>De quanto em quanto tempo preciso aferir e lacrar de novo?</span>
+          <span class="faq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button></h3>
+        <div class="faq-a" id="faq-3"><div>
+          <p>A periodicidade depende da regulamentação metrológica aplicável ao seu equipamento e da exigência da Vigilância Sanitária local. Informe o modelo da sua balança que confirmamos o prazo do seu caso — e avisamos quando a próxima aferição se aproximar.</p>
+        </div></div>
+      </article>
+
+      <article class="faq-card reveal">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-4">
+          <span>O atendimento é feito no meu estabelecimento?</span>
+          <span class="faq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button></h3>
+        <div class="faq-a" id="faq-4"><div>
+          <p>Sim. O técnico vai até você em Uberaba e região, no dia e no período combinados. Se preferir, você também pode trazer o equipamento até a nossa loja.</p>
+        </div></div>
+      </article>
+
+      <article class="faq-card reveal">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-5">
+          <span>Que equipamentos vocês atendem?</span>
+          <span class="faq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button></h3>
+        <div class="faq-a" id="faq-5"><div>
+          <p>Balanças comerciais de bancada e de plataforma, balanças de açougue e padaria, balanças de consultório, nos modelos mecânicos e digitais. Também trabalhamos com impressoras térmicas de cupom, leitores de código de barras, gavetas de dinheiro, busca-preço e computadores de frente de caixa.</p>
+        </div></div>
+      </article>
+
+      <article class="faq-card reveal">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-6">
+          <span>Minha balança está com defeito.<br>Vocês consertam?</span>
+          <span class="faq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button></h3>
+        <div class="faq-a" id="faq-6"><div>
+          <p>Sim. Fazemos o diagnóstico e o conserto — célula de carga, display, teclado, placa e ajuste do fiel nas mecânicas. Também consertamos impressoras de cupom e leitores. O orçamento é enviado antes de qualquer troca de peça.</p>
+        </div></div>
+      </article>
+
+      <article class="faq-card reveal">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-7">
+          <span>Quanto custa o serviço?</span>
+          <span class="faq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button></h3>
+        <div class="faq-a" id="faq-7"><div>
+          <p>O valor depende do tipo de equipamento, do serviço e da quantidade. Monte o seu pedido aqui no site em menos de um minuto e retornamos com o valor e o prazo.</p>
+          <p><a href="#contato" data-wa-jump="orcamento">Pedir orçamento →</a></p>
+        </div></div>
+      </article>
+
+      <article class="faq-card reveal">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-8">
+          <span>Vocês atendem a minha cidade?</span>
+          <span class="faq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button></h3>
+        <div class="faq-a" id="faq-8"><div>
+          <p>Atendemos Uberaba e região. Mande o nome da sua cidade no WhatsApp que confirmamos o atendimento e as condições de deslocamento.</p>
+        </div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 6. CONTATO / WHATSAPP ===================== -->
+<section class="wa" id="contato">
+  <div class="container">
+    <div class="headwrap reveal">
+      <div class="cmrule" aria-hidden="true"></div>
+      <div class="sec-head">
+        <p class="eyebrow">Atendimento por WhatsApp</p>
+        <h2>Monte sua mensagem e envie em um toque</h2>
+        <p>Escolha o assunto, marque as opções e o texto é escrito para você. Ao enviar, o WhatsApp abre com a mensagem pronta — você só confirma.</p>
+      </div>
+    </div>
+
+    <div class="wa-box reveal">
+      <div class="tabs" role="tablist" aria-label="Tipo de solicitação">
+        <button class="tab" role="tab" id="tab-contato" aria-controls="painel-contato" aria-selected="true" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H8l-4 4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+          Fale conosco
+        </button>
+        <button class="tab" role="tab" id="tab-orcamento" aria-controls="painel-orcamento" aria-selected="false" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 9h8M8 13h5M8 17h3"></path></svg>
+          Orçamento
+        </button>
+        <button class="tab" role="tab" id="tab-agendamento" aria-controls="painel-agendamento" aria-selected="false" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18m-9 4 2 2 3-3"></path></svg>
+          Agendamento
+        </button>
+      </div>
+
+      <!-- painel: orçamento -->
+      <div class="panel" role="tabpanel" id="painel-orcamento" aria-labelledby="tab-orcamento" data-panel="orcamento" hidden>
+        <div class="panel-fields">
+          <fieldset class="fieldset">
+            <legend>Equipamento</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="orc-equip" value="balança comercial" checked><span>Balança comercial</span></label>
+              <label class="chip"><input type="radio" name="orc-equip" value="balança de açougue / padaria"><span>Açougue / padaria</span></label>
+              <label class="chip"><input type="radio" name="orc-equip" value="balança de plataforma"><span>De plataforma</span></label>
+              <label class="chip"><input type="radio" name="orc-equip" value="balança de consultório"><span>De consultório</span></label>
+              <label class="chip"><input type="radio" name="orc-equip" value="impressora térmica de cupom"><span>Impressora de cupom</span></label>
+              <label class="chip"><input type="radio" name="orc-equip" value="leitor de código de barras"><span>Leitor de código de barras</span></label>
+              <label class="chip"><input type="radio" name="orc-equip" value="gaveta de dinheiro"><span>Gaveta de dinheiro</span></label>
+              <label class="chip"><input type="radio" name="orc-equip" value="busca-preço"><span>Busca-preço</span></label>
+              <label class="chip"><input type="radio" name="orc-equip" value="PDV / frente de caixa"><span>PDV / frente de caixa</span></label>
+              <label class="chip"><input type="radio" name="orc-equip" value="outro equipamento"><span>Outro equipamento</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>O que você precisa</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="orc-servico" value="aferição e lacração com laudo do INMETRO" checked><span>Aferição e lacração</span></label>
+              <label class="chip"><input type="radio" name="orc-servico" value="manutenção e conserto"><span>Manutenção / conserto</span></label>
+              <label class="chip"><input type="radio" name="orc-servico" value="compra de equipamento novo"><span>Comprar equipamento</span></label>
+              <label class="chip"><input type="radio" name="orc-servico" value="peças e acessórios"><span>Peças e acessórios</span></label>
+            </div>
+          </fieldset>
+
+          <div class="row">
+            <div class="field">
+              <label for="orc-qtd">Quantidade</label>
+              <input type="number" id="orc-qtd" min="1" max="99" value="1" data-compose>
+            </div>
+            <div class="field">
+              <label for="orc-cidade">Cidade</label>
+              <input type="text" id="orc-cidade" value="Uberaba" data-compose>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="orc-obs">Marca / modelo ou observação</label>
+            <input type="text" id="orc-obs" placeholder="Ex.: Toledo Prix 4 Uno" data-compose>
+          </div>
+        </div>
+
+        <div class="panel-out">
+          <p class="preview-label">Mensagem que será enviada</p>
+          <textarea class="preview" data-preview aria-label="Prévia da mensagem de orçamento — você pode editar antes de enviar"></textarea>
+          <a class="btn btn-wa btn-lg" href="#" data-send>
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm5.83 14.06c-.25.7-1.44 1.34-2 1.42-.51.08-1.16.11-1.87-.12-.43-.13-.98-.32-1.69-.62-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07 0-1.46.76-2.18 1.04-2.48.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.18.3.78 1.29 1.68 2.09 1.15 1.03 2.12 1.35 2.42 1.5.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.73.82 2.03.97.3.15.5.22.57.35.08.13.08.73-.17 1.43Z"></path></svg>
+            Enviar no WhatsApp
+          </a>
+          <p class="hint">Você pode editar o texto antes de enviar. O envio abre o WhatsApp no número (34) 99206-6602.</p>
+        </div>
+      </div>
+
+      <!-- painel: agendamento -->
+      <div class="panel" role="tabpanel" id="painel-agendamento" aria-labelledby="tab-agendamento" data-panel="agendamento" hidden>
+        <div class="panel-fields">
+          <fieldset class="fieldset">
+            <legend>Serviço</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="age-servico" value="aferição com laudo do INMETRO" checked><span>Aferição + laudo</span></label>
+              <label class="chip"><input type="radio" name="age-servico" value="lacração do equipamento"><span>Lacração</span></label>
+              <label class="chip"><input type="radio" name="age-servico" value="manutenção corretiva"><span>Manutenção corretiva</span></label>
+              <label class="chip"><input type="radio" name="age-servico" value="manutenção preventiva"><span>Manutenção preventiva</span></label>
+              <label class="chip"><input type="radio" name="age-servico" value="instalação de equipamento"><span>Instalação</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>Tipo de estabelecimento</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="age-local" value="supermercado" checked><span>Supermercado</span></label>
+              <label class="chip"><input type="radio" name="age-local" value="mercearia / minimercado"><span>Mercearia</span></label>
+              <label class="chip"><input type="radio" name="age-local" value="padaria"><span>Padaria</span></label>
+              <label class="chip"><input type="radio" name="age-local" value="açougue"><span>Açougue</span></label>
+              <label class="chip"><input type="radio" name="age-local" value="farmácia"><span>Farmácia</span></label>
+              <label class="chip"><input type="radio" name="age-local" value="restaurante / lanchonete"><span>Restaurante</span></label>
+              <label class="chip"><input type="radio" name="age-local" value="loja / varejo"><span>Loja / varejo</span></label>
+              <label class="chip"><input type="radio" name="age-local" value="consultório ou clínica"><span>Consultório / clínica</span></label>
+              <label class="chip"><input type="radio" name="age-local" value="outro estabelecimento"><span>Outro</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>Melhor período</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="age-periodo" value="manhã" checked><span>Manhã</span></label>
+              <label class="chip"><input type="radio" name="age-periodo" value="tarde"><span>Tarde</span></label>
+              <label class="chip"><input type="radio" name="age-periodo" value="qualquer horário"><span>Qualquer horário</span></label>
+            </div>
+          </fieldset>
+
+          <div class="row">
+            <div class="field">
+              <label for="age-data">Data desejada</label>
+              <input type="date" id="age-data" data-compose>
+            </div>
+            <div class="field">
+              <label for="age-cidade">Cidade</label>
+              <input type="text" id="age-cidade" value="Uberaba" data-compose>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="age-nome">Nome do estabelecimento</label>
+            <input type="text" id="age-nome" placeholder="Ex.: Mercado Bom Preço" data-compose>
+          </div>
+        </div>
+
+        <div class="panel-out">
+          <p class="preview-label">Mensagem que será enviada</p>
+          <textarea class="preview" data-preview aria-label="Prévia da mensagem de agendamento — você pode editar antes de enviar"></textarea>
+          <a class="btn btn-wa btn-lg" href="#" data-send>
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm5.83 14.06c-.25.7-1.44 1.34-2 1.42-.51.08-1.16.11-1.87-.12-.43-.13-.98-.32-1.69-.62-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07 0-1.46.76-2.18 1.04-2.48.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.18.3.78 1.29 1.68 2.09 1.15 1.03 2.12 1.35 2.42 1.5.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.73.82 2.03.97.3.15.5.22.57.35.08.13.08.73-.17 1.43Z"></path></svg>
+            Enviar no WhatsApp
+          </a>
+          <p class="hint">A data escolhida é uma preferência. Confirmamos o horário disponível na conversa.</p>
+        </div>
+      </div>
+
+      <!-- painel: fale conosco -->
+      <div class="panel" role="tabpanel" id="painel-contato" aria-labelledby="tab-contato" data-panel="contato">
+        <div class="panel-fields">
+          <div class="field" id="f-nome">
+            <label for="c-nome">Nome *</label>
+            <input type="text" id="c-nome" autocomplete="name" placeholder="Seu nome completo" data-compose required>
+            <p class="err">Informe o seu nome.</p>
+          </div>
+
+          <div class="row">
+            <div class="field" id="f-telefone">
+              <label for="c-telefone">Telefone / WhatsApp *</label>
+              <input type="tel" id="c-telefone" autocomplete="tel" inputmode="tel" placeholder="(34) 90000-0000" data-compose required>
+              <p class="err">Informe um telefone com DDD.</p>
+            </div>
+            <div class="field" id="f-email">
+              <label for="c-email">E-mail *</label>
+              <input type="email" id="c-email" autocomplete="email" placeholder="voce@empresa.com.br" data-compose required>
+              <p class="err">Informe um e-mail válido.</p>
+            </div>
+          </div>
+
+          <div class="field" id="f-mensagem">
+            <label for="c-mensagem">Descrição ou dúvida *</label>
+            <textarea id="c-mensagem" placeholder="Ex.: preciso aferir e lacrar as duas balanças do açougue antes da visita da fiscalização." data-compose required></textarea>
+            <p class="err">Escreva uma breve descrição para conseguirmos ajudar.</p>
+          </div>
+        </div>
+
+        <div class="panel-out">
+          <p class="preview-label">Mensagem que será enviada</p>
+          <textarea class="preview" data-preview aria-label="Prévia da sua mensagem — você pode editar antes de enviar"></textarea>
+          <a class="btn btn-wa btn-lg" href="#" data-send data-validar>
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm5.83 14.06c-.25.7-1.44 1.34-2 1.42-.51.08-1.16.11-1.87-.12-.43-.13-.98-.32-1.69-.62-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07 0-1.46.76-2.18 1.04-2.48.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.18.3.78 1.29 1.68 2.09 1.15 1.03 2.12 1.35 2.42 1.5.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.73.82 2.03.97.3.15.5.22.57.35.08.13.08.73-.17 1.43Z"></path></svg>
+            Enviar pelo WhatsApp
+          </a>
+          <p class="hint">Prefere e-mail? <a href="#" id="enviar-email">Enviar para Administrativo@maxmaquina.com.br</a></p>
+          <div class="form-status" id="form-status" role="status" aria-live="polite">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4L19 7"></path></svg>
+            <span id="form-status-text"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== RODAPÉ ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#topo" aria-label="Max Máquinas — voltar ao topo">
+          <img src="img/logo-maxmaquinas.png" width="491" height="304" alt="Max Máquinas Automação Comercial">
+        </a>
+        <p>Assistência técnica autorizada em aferição e lacração de balanças. Automação comercial em Uberaba e região há mais de 25 anos.</p>
+      </div>
+
+      <div>
+        <h4>Contato</h4>
+        <div class="footer-list">
+          <a href="https://wa.me/5534992066602" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5a2 2 0 0 1 2-2h2.5l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5L15 13l4 1.5V17a2 2 0 0 1-2 2A14 14 0 0 1 3 5Z"></path></svg>
+            <span><b>(34) 99206-6602</b><small>WhatsApp e telefone</small></span>
+          </a>
+          <a href="mailto:Administrativo@maxmaquina.com.br">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+            <span><b>Administrativo@maxmaquina.com.br</b><small>E-mail</small></span>
+          </a>
+          <div>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a7 7 0 1 1 14 0c0 5.6-7 10-7 10Z"></path><circle cx="12" cy="11" r="2.6"></circle></svg>
+            <span><b>Uberaba e região</b><small>Área de atendimento</small></span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4>Navegação</h4>
+        <nav class="footer-links" aria-label="Rodapé">
+          <a href="#beneficios">Benefícios</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#garantia">Garantia</a>
+          <a href="#duvidas">Dúvidas frequentes</a>
+          <a href="#contato">Contato</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="ano">2026</span> Max Máquinas Automação Comercial · Uberaba/MG</span>
+      <span class="rs-credito">Desenvolvido por <a class="rs" href="https://www.rssolucoesdigitais.com.br/" target="_blank" rel="noopener"><img class="rs-logo" src="img/rs-simbolo.png" width="390" height="354" alt="RS"><span class="rs-nome">Soluções Digitais</span></a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" id="fab" href="https://wa.me/5534992066602?text=Ol%C3%A1%2C%20Max%20M%C3%A1quinas!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20atendente." target="_blank" rel="noopener" aria-label="Falar no WhatsApp" tabindex="-1" aria-hidden="true">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm5.83 14.06c-.25.7-1.44 1.34-2 1.42-.51.08-1.16.11-1.87-.12-.43-.13-.98-.32-1.69-.62-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07 0-1.46.76-2.18 1.04-2.48.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.18.3.78 1.29 1.68 2.09 1.15 1.03 2.12 1.35 2.42 1.5.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.73.82 2.03.97.3.15.5.22.57.35.08.13.08.73-.17 1.43Z"></path></svg>
+  <span class="lbl">Falar no WhatsApp</span>
+</a>
+
+<script>
+(function () {
+  "use strict";
+
+  var WHATSAPP = "5534992066602";                       // número internacional, só dígitos
+  var EMAIL    = "Administrativo@maxmaquina.com.br";
+  var reduz    = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function waLink(t) { return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t); }
+  function abrirWhatsapp(t) { window.open(waLink(t), "_blank", "noopener"); }
+  function val(sel) { var el = document.querySelector(sel); return el ? el.value.trim() : ""; }
+  function cada(lista, fn) { Array.prototype.forEach.call(lista, fn); }
+
+  document.getElementById("ano").textContent = new Date().getFullYear();
+
+  /* ---------- header ---------- */
+  var header = document.querySelector(".header");
+  function onScroll() { header.classList.toggle("is-stuck", window.scrollY > 8); }
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  function medirHeader() {
+    document.documentElement.style.scrollPaddingTop = (header.offsetHeight + 16) + "px";
+  }
+  medirHeader();
+  window.addEventListener("resize", medirHeader, { passive: true });
+
+  /* ---------- botão flutuante ----------
+     Fica escondido enquanto qualquer uma destas áreas estiver na tela:
+     o topo e o bloco de contato já trazem o mesmo atalho, e nas dúvidas
+     o botão cobriria os cards. */
+  (function () {
+    var fab = document.getElementById("fab");
+    var zonas = [
+      document.getElementById("inicio"),
+      document.getElementById("duvidas"),
+      document.querySelector(".footer")
+    ].filter(Boolean);
+    if (!fab || !zonas.length) return;
+
+    function mostrar(sim) {
+      fab.classList.toggle("is-on", sim);
+      fab.setAttribute("aria-hidden", String(!sim));
+      if (sim) { fab.removeAttribute("tabindex"); } else { fab.setAttribute("tabindex", "-1"); }
+    }
+
+    if ("IntersectionObserver" in window) {
+      var naTela = zonas.map(function () { return false; });
+      var obs = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (en) {
+          var i = zonas.indexOf(en.target);
+          if (i >= 0) naTela[i] = en.isIntersecting;
+        });
+        mostrar(naTela.every(function (v) { return !v; }));
+      }, { threshold: 0 });
+      zonas.forEach(function (z) { obs.observe(z); });
+    } else {
+      var checar = function () {
+        var alturaTela = window.innerHeight || document.documentElement.clientHeight;
+        var alguma = zonas.some(function (z) {
+          var r = z.getBoundingClientRect();
+          return r.top < alturaTela && r.bottom > 0;
+        });
+        mostrar(!alguma);
+      };
+      window.addEventListener("scroll", checar, { passive: true });
+      window.addEventListener("resize", checar, { passive: true });
+      checar();
+    }
+  })();
+
+  /* ---------- menu com abertura progressiva ---------- */
+  var nav = document.getElementById("nav");
+  var navToggle = document.getElementById("navtoggle");
+  var mqMobile = window.matchMedia("(max-width: 1040px)");
+
+  function fecharMenu() {
+    nav.classList.remove("is-open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Abrir menu");
+  }
+  navToggle.addEventListener("click", function () {
+    var aberto = nav.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", String(aberto));
+    navToggle.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
+  });
+  nav.addEventListener("click", function (e) {
+    if (e.target.tagName === "A" && mqMobile.matches) fecharMenu();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) { fecharMenu(); navToggle.focus(); }
+  });
+  mqMobile.addEventListener("change", fecharMenu);
+
+  /* ---------- reveal ---------- */
+  (function () {
+    var itens = document.querySelectorAll(".reveal");
+    if (reduz || !("IntersectionObserver" in window)) {
+      cada(itens, function (n) { n.classList.add("is-in"); });
+      return;
+    }
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("is-in"); obs.unobserve(en.target); }
+      });
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.06 });
+    cada(itens, function (n, i) {
+      n.style.transitionDelay = (Math.min(i % 6, 5) * 50) + "ms";
+      obs.observe(n);
+    });
+  })();
+
+  /* ---------- dúvidas frequentes ----------
+     O card inteiro abre e fecha. O clique no botão sobe até aqui, então
+     existe um único ouvinte e a alternância nunca acontece em dobro. */
+  cada(document.querySelectorAll(".faq-card"), function (card) {
+    var botao = card.querySelector(".faq-q");
+    card.addEventListener("click", function (e) {
+      if (e.target.closest && e.target.closest("a")) return;   // links da resposta seguem seu caminho
+      var sel = window.getSelection();
+      if (sel && sel.toString().length > 0) return;            // não fecha no meio de uma seleção de texto
+      var aberto = card.classList.toggle("is-open");
+      botao.setAttribute("aria-expanded", String(aberto));
+    });
+  });
+
+  /* ==========================================================
+     Mensagens pré-programadas do WhatsApp
+     ========================================================== */
+  var ABERTURA = "Olá, Max Máquinas! Vim pelo site.";
+
+  function escolhido(nome) {
+    var el = document.querySelector('input[name="' + nome + '"]:checked');
+    return el ? el.value : "";
+  }
+  function dataBR(iso) {
+    if (!iso) return "";
+    var p = iso.split("-");
+    return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : iso;
+  }
+  function linhas(pares) {
+    return pares
+      .filter(function (par) { return par[1]; })
+      .map(function (par) { return "• " + par[0] + ": " + par[1]; })
+      .join("\n");
+  }
+
+  var construtores = {
+    orcamento: function () {
+      return ABERTURA + " Gostaria de solicitar um *orçamento*.\n\n" + linhas([
+        ["Equipamento", escolhido("orc-equip")],
+        ["Serviço", escolhido("orc-servico")],
+        ["Quantidade", val("#orc-qtd")],
+        ["Cidade", val("#orc-cidade")],
+        ["Marca / modelo", val("#orc-obs")]
+      ]) + "\n\nPode me passar o valor e o prazo? Obrigado!";
+    },
+    agendamento: function () {
+      return ABERTURA + " Gostaria de *agendar um atendimento*.\n\n" + linhas([
+        ["Serviço", escolhido("age-servico")],
+        ["Estabelecimento", val("#age-nome")],
+        ["Segmento", escolhido("age-local")],
+        ["Cidade", val("#age-cidade")],
+        ["Data desejada", dataBR(val("#age-data"))],
+        ["Período", escolhido("age-periodo")]
+      ]) + "\n\nEsse dia e horário têm disponibilidade? Obrigado!";
+    },
+    contato: function () {
+      var corpo = linhas([
+        ["Nome", val("#c-nome")],
+        ["Telefone", val("#c-telefone")],
+        ["E-mail", val("#c-email")]
+      ]);
+      var msg = val("#c-mensagem");
+      return ABERTURA + "\n\n" + (corpo ? corpo + "\n\n" : "") +
+             (msg ? "Descrição / dúvida:\n" + msg : "Gostaria de falar com um atendente.");
+    }
+  };
+
+  /* ---------- validação do painel "fale conosco" ---------- */
+  var regras = [
+    { id: "f-nome",     campo: "c-nome",     ok: function (v) { return v.length >= 2; } },
+    { id: "f-telefone", campo: "c-telefone", ok: function (v) { return v.replace(/\D/g, "").length >= 10; } },
+    { id: "f-email",    campo: "c-email",    ok: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); } },
+    { id: "f-mensagem", campo: "c-mensagem", ok: function (v) { return v.length >= 5; } }
+  ];
+
+  function validarContato() {
+    var primeiroErro = null;
+    regras.forEach(function (r) {
+      var wrap = document.getElementById(r.id);
+      var input = document.getElementById(r.campo);
+      var valido = r.ok(input.value.trim());
+      wrap.classList.toggle("is-invalid", !valido);
+      input.setAttribute("aria-invalid", String(!valido));
+      if (!valido && !primeiroErro) primeiroErro = input;
+    });
+    if (primeiroErro) primeiroErro.focus();
+    return !primeiroErro;
+  }
+
+  regras.forEach(function (r) {
+    var input = document.getElementById(r.campo);
+    input.addEventListener("blur", function () {
+      var valido = r.ok(input.value.trim());
+      document.getElementById(r.id).classList.toggle("is-invalid", !valido && input.value.trim() !== "");
+    });
+  });
+
+  /* máscara de telefone */
+  var tel = document.getElementById("c-telefone");
+  tel.addEventListener("input", function () {
+    var d = tel.value.replace(/\D/g, "").slice(0, 11);
+    if (d.length <= 2) { tel.value = d; return; }
+    var corte = d.length > 10 ? 7 : 6;
+    tel.value = d.length > corte
+      ? "(" + d.slice(0, 2) + ") " + d.slice(2, corte) + "-" + d.slice(corte)
+      : "(" + d.slice(0, 2) + ") " + d.slice(2);
+  });
+
+  /* ---------- painéis ---------- */
+  cada(document.querySelectorAll(".panel"), function (painel) {
+    var tipo = painel.getAttribute("data-panel");
+    var preview = painel.querySelector("[data-preview]");
+    var botao = painel.querySelector("[data-send]");
+    var editado = false;
+
+    function sincronizarLink() { botao.href = waLink(preview.value.trim() || construtores[tipo]()); }
+    function atualizar() {
+      if (!editado) preview.value = construtores[tipo]();
+      sincronizarLink();
+    }
+
+    painel.addEventListener("change", function (e) {
+      if (e.target === preview) return;
+      editado = false;              // trocou uma opção: volta a gerar o texto
+      atualizar();
+    });
+    painel.addEventListener("input", function (e) {
+      if (e.target === preview) { editado = true; sincronizarLink(); return; }
+      if (e.target.hasAttribute("data-compose")) atualizar();
+    });
+    botao.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (botao.hasAttribute("data-validar") && !validarContato()) return;
+      abrirWhatsapp(preview.value.trim() || construtores[tipo]());
+      if (tipo === "contato") {
+        document.getElementById("form-status-text").textContent =
+          "Abrimos o WhatsApp com a sua mensagem pronta. Se a janela não apareceu, verifique o bloqueador de pop-ups do navegador.";
+        document.getElementById("form-status").classList.add("is-on");
+      }
+    });
+
+    atualizar();
+  });
+
+  document.getElementById("enviar-email").addEventListener("click", function (e) {
+    e.preventDefault();
+    if (!validarContato()) return;
+    var corpo = document.querySelector('#painel-contato [data-preview]').value.trim() || construtores.contato();
+    window.location.href = "mailto:" + EMAIL +
+      "?subject=" + encodeURIComponent("Contato pelo site - " + (val("#c-nome") || "novo cliente")) +
+      "&body=" + encodeURIComponent(corpo);
+    document.getElementById("form-status-text").textContent = "Abrimos o seu programa de e-mail com a mensagem preenchida.";
+    document.getElementById("form-status").classList.add("is-on");
+  });
+
+  /* ---------- abas ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  function selecionar(tab, focar) {
+    tabs.forEach(function (t) {
+      var ativo = t === tab;
+      t.setAttribute("aria-selected", String(ativo));
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !ativo;
+    });
+    if (focar) tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () { selecionar(tab, false); });
+    tab.addEventListener("keydown", function (e) {
+      var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      selecionar(tabs[(i + d + tabs.length) % tabs.length], true);
+    });
+  });
+
+  /* atalhos que já abrem a aba certa */
+  cada(document.querySelectorAll("[data-wa-jump]"), function (a) {
+    a.addEventListener("click", function () {
+      var alvo = document.getElementById("tab-" + a.getAttribute("data-wa-jump"));
+      if (alvo) selecionar(alvo, false);
+    });
+  });
+})();
+</script>
+</body>
+</html>
