@@ -16,10 +16,10 @@
     - Quando tem a redução temos também a alteração do botão de falar via whatsapp para um botão reduzido para que fique melhor estruturado na página.
 
 ## Botão flutuante
-    O botão flutuante tem a regra de aparecer somente quando não temos a o botão de falar no whatsapp aparente.
+    O botão flutuante fica escondido enquanto o topo, as dúvidas frequêntes ou o rodapé estão na tela, já que essas áreas já trazem o próprio atalho para o whatsapp.
 
 ## Hero
-    - Background: Imagem enviada pelo cliente
+    - Background: Foto da loja, tratada (recorte, clareamento e gradiente) para não atrapalhar a leitura do texto.
     - Texto explicativo de qual ramo é a empresa.
     - Botão que leva ao agendamento via whatsapp.
     - Botão de como funciona a empresa.
@@ -50,6 +50,7 @@ Card explicativo de quem está garantindo o seu produto.
 
 ## Duvidas frequêntes
     Cards contêndo as duvidas e respostas mais frequêntes enviadas para a empresa.
+    Cada card abre e fecha ao ser clicado, mostrando a resposta.
 
 ## Footer
 Um pouco mais sobre quem é a Max Maquina:
@@ -68,6 +69,9 @@ Meios de navegação entre a página:
     - Dúvidas frequentes
     - Contato
 
+Crédito de desenvolvimento (logo + texto), linkando para o site da RS Soluções Digitais:
+    - Desenvolvido por RS Soluções Digitais
+
 ## Integração com o whatsapp:
 Ao final da landpage tem a integração com o whatsapp, ele monta uma mensagem pré pronta para padronização de envio de mensagens.
     - Na parte de fale conosco:
@@ -77,7 +81,7 @@ Ao final da landpage tem a integração com o whatsapp, ele monta uma mensagem p
         - Descrição da dúvida 
     - Na parte orçamentos.
         - Tipo de equipamento
-        - Qual a área de atuação do equipamento
+        - O que você precisa (aferição/lacração, manutenção, compra de equipamento, peças e acessórios)
         - Quantidade
         - Localização/Cidade
         - Marca ou descriçãp/observação

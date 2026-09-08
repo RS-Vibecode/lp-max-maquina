@@ -156,7 +156,24 @@ button,input,textarea{font:inherit;color:inherit;max-width:100%}
 section{padding-block:var(--gap-sec)}
 
 /* ---------- estadiômetro: motivo estrutural ---------- */
-.headwrap{display:flex;gap:clamp(16px,2.5vw,28px);align-items:stretch}
+.headwrap{display:flex;gap:clamp(16px,2.5vw,28px);align-items:stretch;flex-wrap:wrap}
+/* Foto do equipamento ao lado do título da seção. O texto continua sendo o
+   item que cresce; a foto tem largura própria e se centra na altura. */
+.headwrap .sec-head{flex:1 1 22rem}
+.sec-foto{
+  flex:0 0 auto;align-self:center;margin-left:auto;
+  width:clamp(280px,38vw,520px);height:auto;
+}
+/* a impressora é quase quadrada: na mesma largura da balança ela pesaria
+   muito mais na página, então recebe uma medida própria */
+.sec-foto--alta{width:clamp(220px,27vw,375px)}
+.sec-foto--esq{margin-left:0}
+@media (max-width:900px){
+  .sec-foto,.sec-foto--alta{
+    margin-left:0;align-self:flex-start;
+    width:min(78%,420px);margin-top:6px;
+  }
+}
 .cmrule{
   flex:none;width:38px;
   background:
@@ -305,23 +322,32 @@ section{padding-block:var(--gap-sec)}
 }
 
 /* ---------- 1. HERÓI ----------
-   Bloco de mundo próprio: imagem de fundo escura em qualquer tema, com
-   véu sobreposto que garante o contraste do texto em todo o quadro.
-   A camada "img/hero-foto.jpg" é a foto: basta salvar o arquivo em img/ que
-   ela assume. Sem o arquivo, o fundo abstrato "img/hero-fundo.jpg" aparece
-   no lugar — se decidir não usar foto, remova a linha do hero-foto. */
+   Fachada da loja sob um véu escuro, em qualquer tema. A foto original é
+   retrato (2:3); aqui entram dois recortes já na proporção certa, para o
+   navegador nunca precisar esticar nem cortar o letreiro:
+   hero-loja.jpg (1,97:1) em telas largas e hero-loja-vertical.jpg (1,42:1)
+   nas estreitas. O véu está calibrado para o texto branco manter no mínimo
+   5,2:1 de contraste no ponto mais claro da imagem (o céu). A ancoragem em
+   25% da altura evita que o corte em telas mais panorâmicas coma o topo
+   do letreiro. */
 .hero{
   position:relative;overflow:hidden;border-bottom:1px solid #23372E;
   background-color:#070E0B;
   background-image:
-    linear-gradient(180deg, rgba(6,14,11,.42) 0%, rgba(6,14,11,.55) 52%, rgba(6,14,11,.72) 100%),
-    url("img/hero-foto.jpg"),
-    url("img/hero-fundo.jpg");
-  background-size:cover, cover, cover;
-  background-position:center, center 32%, center;
-  background-repeat:no-repeat, no-repeat, no-repeat;
+    linear-gradient(180deg, rgba(6,14,11,.60) 0%, rgba(6,14,11,.68) 52%, rgba(6,14,11,.80) 100%),
+    url("img/hero-loja.jpg");
+  background-size:cover, cover;
+  background-position:center, center 25%;
+  background-repeat:no-repeat, no-repeat;
   color:#F2F8F4;
   padding-block:clamp(56px,8vw,104px) clamp(54px,8vw,98px);
+}
+@media (max-width:760px){
+  .hero{
+    background-image:
+      linear-gradient(180deg, rgba(6,14,11,.60) 0%, rgba(6,14,11,.68) 52%, rgba(6,14,11,.80) 100%),
+      url("img/hero-loja-vertical.jpg");
+  }
 }
 .hero-inner{
   display:flex;flex-direction:column;align-items:center;text-align:center;
@@ -729,6 +755,8 @@ section{padding-block:var(--gap-sec)}
         <h2>Regularidade em dia e equipamento confiável no caixa</h2>
         <p>A balança é ao mesmo tempo item de fiscalização e ferramenta de venda. Cuidamos dos dois lados — e do resto da frente de caixa junto.</p>
       </div>
+      <img class="sec-foto" src="img/balanca-destaque.png" width="900" height="594"
+           alt="Balança comercial Prix com impressora de etiquetas" loading="lazy" decoding="async">
     </div>
 
     <div class="cards">
@@ -777,12 +805,12 @@ section{padding-block:var(--gap-sec)}
       <li class="step reveal">
         <span class="step-n" aria-hidden="true">02</span>
         <h3>Visita agendada</h3>
-        <p>O técnico vai até o seu estabelecimento no dia e período combinados — ou você traz o equipamento até a nossa loja.</p>
+        <p>No dia e período combinados, o técnico vai até o seu estabelecimento. Se preferir, você também pode trazer o equipamento até a nossa loja.</p>
       </li>
       <li class="step reveal">
         <span class="step-n" aria-hidden="true">03</span>
         <h3>Manutenção e aferição</h3>
-        <p>Reparo do que estiver com defeito e aferição com pesos-padrão em toda a faixa de pesagem do equipamento.</p>
+        <p>Reparamos o que estiver com defeito e conferimos a precisão com pesos-padrão em toda a faixa de pesagem do equipamento.</p>
       </li>
       <li class="step reveal">
         <span class="step-n" aria-hidden="true">04</span>
@@ -806,6 +834,25 @@ section{padding-block:var(--gap-sec)}
     </div>
 
     <div class="warranty">
+      <aside class="warranty-note reveal">
+        <p class="eyebrow">Mais de 25 anos</p>
+        <h3>Quem assina o laudo responde por ele</h3>
+        <p>
+          A Max Máquinas Automação Comercial atua há mais de 25 anos em Uberaba e região.
+          Atendemos supermercados, padarias, açougues, farmácias, consultórios e todo tipo
+          de comércio que depende de equipamento confiável na frente de caixa e de suporte
+          técnico que aparece quando é chamado.
+        </p>
+        <p class="fineprint">
+          Prazos de garantia e valores variam conforme o equipamento e o serviço executado.
+          Consulte as condições no seu orçamento.
+        </p>
+        <a class="btn btn-wa" href="#contato" data-wa-jump="orcamento">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm5.83 14.06c-.25.7-1.44 1.34-2 1.42-.51.08-1.16.11-1.87-.12-.43-.13-.98-.32-1.69-.62-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07 0-1.46.76-2.18 1.04-2.48.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.18.3.78 1.29 1.68 2.09 1.15 1.03 2.12 1.35 2.42 1.5.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.73.82 2.03.97.3.15.5.22.57.35.08.13.08.73-.17 1.43Z"></path></svg>
+          Pedir orçamento
+        </a>
+      </aside>
+
       <ul class="checks reveal">
         <li>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4L19 7"></path></svg>
@@ -828,25 +875,6 @@ section{padding-block:var(--gap-sec)}
           <div><b>Histórico do seu equipamento</b><span>Guardamos o registro dos atendimentos anteriores e avisamos quando a próxima aferição se aproxima.</span></div>
         </li>
       </ul>
-
-      <aside class="warranty-note reveal">
-        <p class="eyebrow">Mais de 25 anos</p>
-        <h3>Quem assina o laudo responde por ele</h3>
-        <p>
-          A Max Máquinas Automação Comercial atua há mais de 25 anos em Uberaba e região.
-          Atendemos supermercados, padarias, açougues, farmácias, consultórios e todo tipo
-          de comércio que depende de equipamento confiável na frente de caixa e de suporte
-          técnico que aparece quando é chamado.
-        </p>
-        <p class="fineprint">
-          Prazos de garantia e valores variam conforme o equipamento e o serviço executado.
-          Consulte as condições no seu orçamento.
-        </p>
-        <a class="btn btn-wa" href="#contato" data-wa-jump="orcamento">
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm5.83 14.06c-.25.7-1.44 1.34-2 1.42-.51.08-1.16.11-1.87-.12-.43-.13-.98-.32-1.69-.62-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07 0-1.46.76-2.18 1.04-2.48.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.18.3.78 1.29 1.68 2.09 1.15 1.03 2.12 1.35 2.42 1.5.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.73.82 2.03.97.3.15.5.22.57.35.08.13.08.73-.17 1.43Z"></path></svg>
-          Pedir orçamento
-        </a>
-      </aside>
     </div>
   </div>
 </section>
@@ -861,6 +889,8 @@ section{padding-block:var(--gap-sec)}
         <h2>As perguntas que mais chegam até nós</h2>
         <p>Clique na pergunta para ver a resposta. Se a sua não estiver aqui, é só mandar no WhatsApp.</p>
       </div>
+      <img class="sec-foto sec-foto--alta" src="img/impressora-destaque.png" width="660" height="675"
+           alt="Impressora térmica de cupom Elgin i9" loading="lazy" decoding="async">
     </div>
 
     <div class="faq-grid">
@@ -957,7 +987,7 @@ section{padding-block:var(--gap-sec)}
       <div class="sec-head">
         <p class="eyebrow">Atendimento por WhatsApp</p>
         <h2>Monte sua mensagem e envie em um toque</h2>
-        <p>Escolha o assunto, marque as opções e o texto é escrito para você. Ao enviar, o WhatsApp abre com a mensagem pronta — você só confirma.</p>
+        <p>Escolha o assunto e marque as opções: sua mensagem é montada automaticamente. É só enviar e confirmar o envio direto no WhatsApp.</p>
       </div>
     </div>
 
